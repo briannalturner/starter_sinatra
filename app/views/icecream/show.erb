@@ -1,0 +1,17 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>Show</title>
+	</head>
+		<body>
+			<h1><%= @icecream.flavor.capitalize%></h1>
+			<ul>
+				<li>Price: $<%= @icecream.price%></li>
+				<li>Brand: <%= @icecream.brand.capitalize%></li>
+			</ul>
+			<form action="/icecreams/<%=@icecream.id%>" method="POST">
+				<input type="hidden" name="_method" value="DELETE">
+				<input type="submit" value="Delete this icecream">
+			</form>
+		</body>
+</html>
