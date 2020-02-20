@@ -24,6 +24,13 @@ class IcecreamsController < Sinatra::Base
         @icecream = Icecream.find_or_create_by(flavor: @flavor, brand: @brand, price: @price)
         redirect "/icecreams/#{@icecream.id}"
     end
+
+    get '/icecreams/:id/edit' do
+        @icecream = Icecream.find(params[:id])
+
+        erb :edit
+    end
+
     get '/icecreams/:id' do
         @icecream = Icecream.find(params[:id])
         erb :show
@@ -35,5 +42,12 @@ class IcecreamsController < Sinatra::Base
         redirect "/icecreams"
     end
 
+    post '/icecreams/:id' do
+        @icecream = Icecream.find(params[:id])
+        @icecream.update(flavor: params[:flavor], brand: params[:brand], price: params[:price])
 
+        redirect "/icecreams/#{@icecream.id}"
+    end
+
+    
 end

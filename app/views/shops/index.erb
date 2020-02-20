@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Shops
+        </title>
+    </head>
+    <body>
+        <h1>Shops</h1>
+
+        <ul>
+            <% @shops.each do |shop| %>
+                <li><a href="/shops/<%= shop.id %>"><%= shop.name %></a></li>
+            <% end %>
+        </ul>
+       
+
+    </body>
+</html>
