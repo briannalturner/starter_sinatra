@@ -8,7 +8,7 @@
 
         <ul>
             <% @icecreams.each do |ic| %>
-                <li><a href=""><%= ic.flavor %></a></li>
+                <li><a href="/icecreams/<%= ic.id %>"><%= ic.flavor %></a></li>
             <% end %>
         </ul>
         

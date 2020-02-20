@@ -9,6 +9,29 @@
 				<li>Price: $<%= @icecream.price%></li>
 				<li>Brand: <%= @icecream.brand.capitalize%></li>
 			</ul>
+
+
+		<h2>Relationships</h2>
+		<ul>
+			<% @icecream.shops.each do |shop| %>
+				<li><%= shop.name %></li>
+			<% end %>
+		</ul>
+
+		<h3>Make a new Relationship</h3>
+		<form method="POST" action="/icecreams/<%= @icecream.id %>">
+			<input type="hidden" name="_method" value="PATCH">
+			<label for="shop">Shop: </label>
+			<select id="shops" name="shops">
+				<% Shop.all.each do |shop| %>
+					<option value="<%= shop.name %>"><%= shop.name %></option>
+				<% end %>
+			</select>
+
+			<input type="submit" value="Submit">
+		</form>
+
+		<br>
 			<form action="/icecreams/<%=@icecream.id%>" method="POST">
 				<input type="hidden" name="_method" value="DELETE">
 				<input type="submit" value="Delete this icecream">

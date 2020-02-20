@@ -49,5 +49,15 @@ class IcecreamsController < Sinatra::Base
         redirect "/icecreams/#{@icecream.id}"
     end
 
+    patch '/icecreams/:id' do
+        @icecream = Icecream.find(params[:id])
+        @shop = Shop.find_by(name: params[:name])
+        if @shop
+            Relationship.find_or_create_by(shop_id: @shop.id, icecream_id: @icecream.id)
+        end
+
+        redirect "/shops/#{@icecream.id}"
+    end
+
     
 end

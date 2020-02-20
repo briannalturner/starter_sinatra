@@ -7,7 +7,7 @@ class ShopsController < Sinatra::Base
 
     get '/shops' do
         @shops = Shop.all
-        
+
         erb :index
     end
 
@@ -43,6 +43,17 @@ class ShopsController < Sinatra::Base
         @name = params[:name]
         @location = params[:location]
         @shop.update(name: @name, location: @location)
+
+        redirect "/shops/#{@shop.id}"
+    end
+
+    patch '/shops/:id' do
+        @shop = Shop.find(params[:id])
+        @icecream = Icecream.find_by(flavor: params[:icecreams])
+        if @icecream
+            Relationship.find_or_create_by(shop_id: @shop.id, icecream_id: @icecream.id)
+        end
+
         redirect "/shops/#{@shop.id}"
     end
 

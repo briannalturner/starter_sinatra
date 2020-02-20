@@ -6,10 +6,34 @@
 	<body>
 		<h1><%=@shop.name%></h1>
 		<p><%=@shop.location%></p>
-		<form action="/shops/<%=@shop.id%>" method="POST">
-		<input type="hidden" name="_method" value="DELETE">
-		<input type="submit" value="Delete this shop">
+
+		<h2>Relationships</h2>
+		<ul>
+			<% @shop.icecreams.each do |icecream| %>
+				<li><%= icecream.flavor %></li>
+			<% end %>
+		</ul>
+
+		<h3>Make a new Relationship</h3>
+		<form method="POST" action="/shops/<%= @shop.id %>">
+			<input type="hidden" name="_method" value="PATCH">
+			<label for="icecream">Ice Cream: </label>
+			<select id="icecreams" name="icecreams">
+				<% Icecream.all.each do |icecream| %>
+					<option value="<%= icecream.flavor %>"><%= icecream.flavor %></option>
+				<% end %>
+			</select>
+
+			<input type="submit" value="Submit">
 		</form>
+
+		<br>
+
+		<form action="/shops/<%=@shop.id%>" method="POST">
+			<input type="hidden" name="_method" value="DELETE">
+			<input type="submit" value="Delete this shop">
+		</form>
+
 		<a href="/shops">Go back to Home Page</a>
 	</body>
 </html>
