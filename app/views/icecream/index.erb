@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List of Ice Creams</title>
+    </head>
+    <body>
+        <h1>All of The Ice Cream</h1>
+
+        <ul>
+            <% @icecreams.each do |ic| %>
+                <li><a href=""><%= ic.flavor %></a></li>
+            <% end %>
+        </ul>
+
+
+    </body>
+</html>
